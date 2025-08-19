@@ -28,6 +28,7 @@ import os
 import shutil
 import tempfile
 import uuid
+import logging
 from typing import List, Dict, Optional
 
 import pypdf
@@ -38,7 +39,6 @@ from fastapi import FastAPI, UploadFile, File, HTTPException, BackgroundTasks, Q
 from fastapi.middleware.cors import CORSMiddleware
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from dotenv import load_dotenv
-import logging
 from pydantic import BaseModel
 
 # --- Pydantic Models ---
@@ -89,7 +89,7 @@ app.add_middleware(
 class Config:
     GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
     GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
-    CHROMADB_PATH = os.getenv("CHROMADB_PATH", "./vector_db")
+    CHROMADB_PATH = os.getenv("CHROMADB_PATH", "/tmp/vector_db")
     CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", "1000"))
     CHUNK_OVERLAP = int(os.getenv("CHUNK_OVERLAP", "100"))
     COLLECTION_NAME = os.getenv("COLLECTION_NAME", "pdf_documents")
@@ -1142,5 +1142,6 @@ async def health_check():
     return {"status": "healthy"}
 
 
-if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+# Commented out for Vercel deployment
+# if __name__ == "__main__":
+#     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)

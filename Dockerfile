@@ -8,14 +8,14 @@ RUN apt-get update && apt-get install -y \
     gcc \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements first for better caching
-COPY requirements.txt .
+# Copy requirements file (from backend directory)
+COPY ./backend/requirements.txt .
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application
-COPY . .
+# Copy the backend application files
+COPY ./backend/ .
 
 # Create directories that might be needed
 RUN mkdir -p /app/vector_db

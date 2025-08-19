@@ -88,7 +88,7 @@ app.add_middleware(
 # (Your Config class, genai.configure, chromadb.PersistentClient, and text_splitter go here)
 class Config:
     GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-    GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
+    GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
     CHROMADB_PATH = os.getenv("CHROMADB_PATH", "./vector_db")
     CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", "1000"))
     CHUNK_OVERLAP = int(os.getenv("CHUNK_OVERLAP", "100"))

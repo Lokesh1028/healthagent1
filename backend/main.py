@@ -73,6 +73,9 @@ origins = [
     "http://localhost:3000",
     "https://*.vercel.app",  # Allow all Vercel subdomains
     "https://vercel.app",
+    "https://healthagent1.vercel.app",  # Your backend URL
+    # Add your specific frontend URL here after deployment
+    # "https://your-frontend-name.vercel.app",
 ]
 app.add_middleware(
     CORSMiddleware,

@@ -3,7 +3,7 @@ import './App.css';
 
 // Define the backend API URL. This is where your FastAPI server is running.
 const API_URL = process.env.NODE_ENV === 'production' 
-  ? 'https://your-backend-app.vercel.app'  // Replace with your actual Vercel backend URL
+  ? 'https://healthagent1.vercel.app'  // Your actual Vercel backend URL
   : 'http://localhost:8000';
 
 function App() {

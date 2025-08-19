@@ -71,6 +71,8 @@ app = FastAPI(
 # This allows your React frontend (running on localhost:3000) to communicate with the backend.
 origins = [
     "http://localhost:3000",
+    "https://*.vercel.app",  # Allow all Vercel subdomains
+    "https://vercel.app",
 ]
 app.add_middleware(
     CORSMiddleware,

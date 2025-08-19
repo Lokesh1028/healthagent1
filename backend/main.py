@@ -74,6 +74,7 @@ origins = [
     "https://*.vercel.app",  # Allow all Vercel subdomains
     "https://vercel.app",
     "https://healthagent1.vercel.app",  # Your backend URL
+    "https://healthagentf.vercel.app/",
     # Add your specific frontend URL here after deployment
     # "https://your-frontend-name.vercel.app",
 ]

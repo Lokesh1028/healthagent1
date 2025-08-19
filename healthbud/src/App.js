@@ -232,6 +232,7 @@ function App() {
         let endpoint = '';
         let requestBody = {};
         let displayTitle = '';
+        let method = 'POST'; // Default to POST
 
         try {
             // Prepare the request based on which tool was clicked
@@ -244,7 +245,7 @@ function App() {
                         queryParams.append('document_id', selectedDocumentId);
                     }
                     endpoint = `/ask/?${queryParams.toString()}`;
-                    requestBody = {}; // Empty body for POST request with query params
+                    method = 'GET'; // Override to GET for this tool
                     displayTitle = `Question: ${docQAInput}`;
                     break;
                 
@@ -296,12 +297,19 @@ function App() {
                     throw new Error('Unknown tool');
             }
 
+            const fetchOptions = {
+                method: method,
+                headers: {},
+            };
+
+            if (method === 'POST') {
+                fetchOptions.headers['Content-Type'] = 'application/json';
+                fetchOptions.body = JSON.stringify(requestBody);
+            }
+
+
             // Make the API call to the backend
-            const response = await fetch(`${API_URL}${endpoint}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(requestBody)
-            });
+            const response = await fetch(`${API_URL}${endpoint}`, fetchOptions);
 
             if (!response.ok) {
                 const errData = await response.json();

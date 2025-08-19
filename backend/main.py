@@ -420,7 +420,7 @@ async def search_documents(query: str, limit: int = 5):
         raise HTTPException(status_code=500, detail=f"Search failed: {str(e)}")
 
 
-@app.post("/ask/")
+@app.get("/ask/")
 async def ask_question(query: str, document_id: Optional[str] = None, limit: int = 5):
     """
     Ask a question and get an AI-generated answer based on document content
